@@ -9,35 +9,36 @@ def check_password(password):
         with open("common_pass.txt", 'r') as file:
             for line in file:
                 if password == line.strip():
-                    return "Password is too common."
+                    return False
     except FileNotFoundError:
         return "Error: Common password file not found." 
 
     if len(password) < 16:
-        return "Password must be at least 16 characters long."
+        return False
     
     if not any(char.isdigit() for char in password):
-        return "Password must contain at least one digit."
+        return False
     
     if not any(char.islower() for char in password):
-        return "Password must contain at least one lowercase letter."
+        return False
     
     if not any(char.isupper() for char in password):
-        return "Password must contain at least one uppercase letter."
+        return False
     
     if not any(char in special_characters for char in password):
-        return "Password must contain at least one special character."  
+        return False 
             
-    return None
+    return True
 
 
 if __name__ == "__main__":
-    
+    print("Welcome to the password checker!")
+    print("Based on your new knowledge of password best practices, try and create a password that meets the criteria!")
+    print("\n")
     while True:
         password = input("Enter your password: ")
-        problem = check_password(password)
-        if problem:
-            print(problem)
+        if not check_password(password):
+            print("Bad password, please try again.")
             print("\n")
         else:
             print("Password is valid, congrats!")
