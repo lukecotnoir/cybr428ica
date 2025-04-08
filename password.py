@@ -49,7 +49,7 @@ def check_password_hard(password):
     
     found_palindrome = False
     for i in range(len(password)):
-        for j in range(i + 3, len(password) + 1):
+        for j in range(i + 4, len(password) + 1):
             substr = password[i:j]
             if substr == substr[::-1]:
                 found_palindrome = True
@@ -57,7 +57,7 @@ def check_password_hard(password):
         if found_palindrome:
             break
     if not found_palindrome:
-        return "Password must include a palindrome of at least 3 characters."
+        return "Password must include a palindrome of at least 4 characters."
     
     repeated_twice = any(password.count(c) == 2 for c in set(password))
     if not repeated_twice:
