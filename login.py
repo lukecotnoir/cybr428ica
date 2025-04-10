@@ -44,7 +44,7 @@ def validate_login():
 
         messagebox.showinfo("Login Successful", f"Welcome, {userid}! Please log in again. Hope you remember your password!")
         parent.withdraw()
-        show_relogin_window()
+        show_relogin_window(mode)
     else:
         messagebox.showerror("Login Failed", result)
 
@@ -54,7 +54,7 @@ def validate_relogin():
     password = password_entry2.get()
 
     if userid == stored_user and password == stored_pass:
-        messagebox.showinfo("Re-login Successful", "Access Granted!")
+        messagebox.showinfo("Re-login Successful", f"Completed {level_mode} mode")
         relogin_window.destroy()
         parent.destroy()
     else:
@@ -65,8 +65,10 @@ def toggle_password_visibility(entry, var):
     entry.config(show="" if var.get() else "*")
 
 # Show the second login window
-def show_relogin_window():
-    global relogin_window, username_entry2, password_entry2
+def show_relogin_window(mode):
+    global relogin_window, username_entry2, password_entry2, level_mode
+
+    level_mode = mode
 
     relogin_window = tk.Toplevel()
     relogin_window.title("Re-login")
@@ -93,7 +95,7 @@ parent = tk.Tk()
 parent.title("Login Form")
 parent.geometry("300x300")
 
-tk.Label(parent, text="Userid:").pack()
+tk.Label(parent, text="Username:").pack()
 username_entry = tk.Entry(parent)
 username_entry.pack()
 
