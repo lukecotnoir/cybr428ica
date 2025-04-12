@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from password import check_password_easy, check_password_hard, check_password_evil
+from password import check_password_easy, check_password_hard, check_password_epic
 import base64
 
 # Encrypt and decrypt helpers
@@ -20,8 +20,8 @@ def validate_password_by_difficulty(password, mode):
         return check_password_easy(password)
     elif mode == "Hard":
         return check_password_hard(password)
-    elif mode == "Evil":
-        return check_password_evil(password)
+    elif mode == "Epic":
+        return check_password_epic(password)
     return "Invalid mode selected."
 
 # Validate first login
@@ -110,7 +110,7 @@ show_button.pack()
 
 tk.Label(parent, text="Select Difficulty:").pack()
 difficulty_var = tk.StringVar(value="Easy")
-difficulty_menu = tk.OptionMenu(parent, difficulty_var, "Easy", "Hard", "Evil")
+difficulty_menu = tk.OptionMenu(parent, difficulty_var, "Easy", "Hard", "Epic")
 difficulty_menu.pack()
 
 login_button = tk.Button(parent, text="Login", command=validate_login)

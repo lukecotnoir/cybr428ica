@@ -69,7 +69,7 @@ def check_password_hard(password):
     return True
 
 
-def check_password_evil(password):
+def check_password_epic(password):
     result = check_password_hard(password)
     if result is not True:
         return result
